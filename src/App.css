@@ -1,0 +1,129 @@
+:root {
+  --navy: #172d43;
+  --hero: #333a3f;
+  --orange: #ee9b1c;
+  --blue: #168bd2;
+  --ink: #273d56;
+  --muted: #687582;
+}
+
+.site-header { height: 95px; background: #fff; border-bottom: 1px solid #f0f1f2; }
+.header-inner { width: min(1180px, calc(100% - 80px)); height: 100%; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.brand { display: flex; align-items: center; gap: 26px; min-width: 0; }
+.logo-placeholder { width: 111px; height: 62px; position: relative; flex: 0 0 auto; color: #ec9720; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1; }
+.logo-mark { font-family: Outfit, sans-serif; font-size: 39px; font-weight: 700; line-height: .8; }
+.logo-word { font-family: Outfit, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; }
+.logo-caption { color: #24446b; font-family: Outfit, sans-serif; font-size: 6px; letter-spacing: 1.8px; margin-top: 3px; }
+.brand-tagline { color: #2e3a49; font-size: 21px; font-weight: 600; white-space: nowrap; }
+.main-nav { display: flex; align-items: center; gap: 39px; color: #202c3c; font-size: 16px; font-weight: 600; white-space: nowrap; }
+.main-nav a { transition: color .2s ease; }
+.main-nav a:hover, .main-nav a:focus-visible { color: var(--orange); }
+.nav-auth-button { border: 0; padding: 0; background: transparent; color: #202c3c; font: inherit; cursor: pointer; }
+.nav-auth-button:hover, .nav-auth-button:focus-visible { color: var(--orange); }
+.menu-toggle { display: none; border: 0; background: transparent; padding: 8px; cursor: pointer; }
+.menu-toggle span { display: block; width: 25px; height: 2px; margin: 5px 0; background: var(--navy); }
+
+.hero-section { min-height: 490px; background: var(--hero); color: #fff; display: flex; align-items: center; }
+.hero-inner { width: min(1180px, calc(100% - 80px)); margin: auto; display: grid; grid-template-columns: 1fr 340px; align-items: center; gap: 50px; padding: 45px 0 42px; }
+.hero-copy { text-align: center; padding-left: 20px; }
+.hero-copy h1 { margin: 0 auto 23px; max-width: 700px; font-size: clamp(28px, 3vw, 42px); line-height: 1.45; font-weight: 700; }
+.hero-download { color: #ffd02d; font-size: clamp(17px, 1.65vw, 24px); font-weight: 600; margin: 0 0 14px; }
+.hero-services { color: #f6af23; font-size: clamp(15px, 1.35vw, 20px); margin: 0 0 34px; }
+.hero-actions { display: flex; justify-content: center; gap: 18px; }
+.button { min-width: 137px; padding: 11px 23px; border-radius: 4px; color: #fff; font-size: 16px; font-weight: 600; text-align: center; transition: transform .2s ease, filter .2s ease; }
+.button:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.button-primary { background: #168bd2; }
+.button-secondary { background: #e8a12c; }
+.hero-media { display: flex; align-items: center; justify-content: center; gap: 23px; }
+.image-placeholder { position: relative; overflow: hidden; }
+.play-placeholder { width: 165px; height: 52px; border-radius: 7px; background: #080808; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 3px 9px rgba(0,0,0,.22); }
+.play-placeholder small, .play-placeholder strong { display: block; text-align: left; font-family: Outfit, sans-serif; line-height: 1; }
+.play-placeholder small { font-size: 8px; letter-spacing: .6px; }
+.play-placeholder strong { font-size: 16px; font-weight: 500; margin-top: 3px; }
+.play-icon { color: #41a5f4; font-size: 22px; transform: scaleX(.8); }
+.qr-placeholder { width: 125px; height: 125px; border-radius: 8px; background: #050505; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.qr-pattern { width: 83px; height: 83px; position: relative; border: 5px solid white; background: repeating-conic-gradient(#fff 0 25%, #111 0 50%) 0 0 / 11px 11px; }
+.qr-pattern::before, .qr-pattern::after { content: ''; position: absolute; width: 21px; height: 21px; border: 5px solid #fff; background: #111; box-shadow: inset 0 0 0 4px #111, inset 0 0 0 7px #fff; }
+.qr-pattern::before { top: 0; left: 0; }
+.qr-pattern::after { right: 0; bottom: 0; }
+.qr-label { font-family: Outfit, sans-serif; color: #fff; font-size: 8px; letter-spacing: 1.3px; }
+
+.content-section { text-align: center; padding: 73px 24px 78px; }
+.section-heading h2 { margin: 0; color: var(--ink); font-size: 28px; line-height: 1.3; font-weight: 700; }
+.heading-rule { display: block; width: 45px; height: 3px; margin: 13px auto 28px; background: var(--orange); }
+.about-section { min-height: 285px; }
+.about-section p, .placeholder-section p { max-width: 890px; margin: auto; color: #5f6d7a; font-size: 16px; line-height: 2; }
+.placeholder-section { min-height: 250px; border-top: 1px solid #eef1f3; background: #fafbfc; }
+.contact-section { background: #fff; }
+.whatsapp-button { position: fixed; right: 38px; bottom: 23px; z-index: 5; width: 55px; height: 55px; border-radius: 50%; display: grid; place-items: center; background: #25d366; box-shadow: 0 5px 16px rgba(0,0,0,.2); transition: transform .2s ease; }
+.whatsapp-button:hover { transform: scale(1.06); }
+.whatsapp-button svg { width: 29px; height: 29px; fill: white; }
+
+.auth-page, .account-page { min-height: 100vh; padding: 42px 20px; background: #f7f9fa; }
+.auth-page { display: grid; place-items: center; position: relative; }
+.auth-brand { position: absolute; top: 34px; left: 42px; display: inline-flex; align-items: center; gap: 11px; color: var(--navy); }
+.auth-brand-mark { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px; background: var(--orange); color: #fff; font: 700 25px Outfit, sans-serif; }
+.auth-brand strong, .auth-brand small { display: block; font-family: Outfit, sans-serif; }
+.auth-brand strong { font-size: 16px; letter-spacing: .8px; }
+.auth-brand small { margin-top: 3px; color: #687582; font-size: 7px; letter-spacing: 1.5px; }
+.auth-site-logo { width: 111px; height: 62px; }
+.auth-card, .account-card { width: min(100%, 460px); padding: 42px; background: #fff; border: 1px solid #e7ecef; border-radius: 8px; box-shadow: 0 14px 35px rgba(29, 61, 80, .08); }
+.auth-eyebrow { color: var(--orange); font-size: 11px; font-weight: 700; letter-spacing: 1.4px; }
+.auth-card h1, .account-card h1 { margin: 12px 0 7px; color: var(--ink); font-size: 30px; line-height: 1.25; }
+.auth-description { margin: 0 0 27px; color: #687582; line-height: 1.6; }
+.auth-form { display: grid; gap: 16px; }
+.auth-form label { display: grid; gap: 7px; color: #344657; font-size: 13px; font-weight: 600; }
+.auth-form input { width: 100%; padding: 12px 13px; border: 1px solid #d6e0e5; border-radius: 4px; background: #fff; color: var(--ink); outline: none; }
+.auth-form input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(22, 139, 210, .12); }
+.auth-password { position: relative; }
+.auth-password input { padding-right: 58px; }
+.auth-password button { position: absolute; top: 0; right: 0; height: 100%; border: 0; padding: 0 11px; background: transparent; color: var(--blue); font-size: 12px; font-weight: 700; }
+.auth-submit { width: 100%; margin-top: 4px; border: 0; cursor: pointer; }
+.auth-submit:disabled { cursor: wait; opacity: .65; }
+.auth-error, .field-error { color: #b4423c; font-size: 12px; line-height: 1.45; }
+.auth-error { margin: 0; padding: 10px 12px; border: 1px solid #f2d1cd; border-radius: 4px; background: #fff3f1; }
+.auth-switch { margin: 8px 0 0; color: #687582; text-align: center; font-size: 13px; }.auth-switch a, .auth-home-link { color: var(--blue); font-weight: 700; }
+.auth-home-link { display: block; margin-top: 5px; text-align: center; font-size: 13px; }
+.account-page { display: grid; place-items: center; }.account-brand { top: 34px; }
+.account-card { text-align: center; }.account-details { display: grid; gap: 1px; margin: 27px 0; border: 1px solid #e6ecef; border-radius: 5px; overflow: hidden; text-align: left; }.account-details div { display: flex; justify-content: space-between; gap: 20px; padding: 13px 15px; background: #fbfcfd; border-bottom: 1px solid #e6ecef; }.account-details div:last-child { border-bottom: 0; }.account-details span { color: #758392; font-size: 12px; }.account-details strong { color: var(--ink); font-size: 13px; text-align: right; }
+
+@media (max-width: 900px) {
+  .header-inner, .hero-inner { width: min(100% - 40px, 680px); }
+  .brand-tagline { font-size: 17px; }
+  .main-nav { gap: 18px; font-size: 14px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 35px; }
+  .hero-copy { padding-left: 0; }
+  .hero-media { padding-bottom: 4px; }
+}
+
+@media (max-width: 640px) {
+  .site-header { height: 78px; }
+  .header-inner { width: calc(100% - 32px); gap: 12px; }
+  .brand { gap: 12px; }
+  .logo-placeholder { width: 77px; height: 49px; }
+  .logo-mark { font-size: 29px; }
+  .logo-word { font-size: 10px; }
+  .logo-caption { font-size: 4px; letter-spacing: 1px; }
+  .brand-tagline { font-size: 13px; white-space: normal; line-height: 1.45; }
+  .menu-toggle { display: block; }
+  .main-nav { display: none; position: absolute; top: 78px; left: 0; right: 0; z-index: 4; padding: 15px 20px; background: white; box-shadow: 0 8px 18px rgba(20,39,55,.12); flex-direction: column; align-items: stretch; gap: 0; }
+  .main-nav.is-open { display: flex; }
+  .main-nav a { padding: 12px 4px; border-bottom: 1px solid #edf0f2; }
+  .nav-auth-button { padding: 12px 4px; border-bottom: 1px solid #edf0f2; text-align: left; }
+  .hero-section { min-height: 0; }
+  .hero-inner { width: calc(100% - 32px); padding: 48px 0 43px; gap: 38px; }
+  .hero-copy h1 { font-size: 27px; line-height: 1.5; margin-bottom: 18px; }
+  .hero-download { font-size: 16px; line-height: 1.7; }
+  .hero-services { font-size: 14px; line-height: 1.7; margin-bottom: 27px; }
+  .hero-actions { gap: 10px; }
+  .button { min-width: 125px; padding: 10px 15px; font-size: 14px; }
+  .hero-media { gap: 15px; }
+  .play-placeholder { width: 150px; }
+  .qr-placeholder { width: 110px; height: 110px; }
+  .qr-pattern { width: 72px; height: 72px; }
+  .content-section { padding: 58px 20px 65px; }
+  .section-heading h2 { font-size: 25px; }
+  .about-section p, .placeholder-section p { font-size: 14px; line-height: 1.9; }
+  .whatsapp-button { right: 18px; bottom: 18px; width: 52px; height: 52px; }
+  .auth-page, .account-page { padding: 90px 16px 30px; }.auth-brand { top: 23px; left: 20px; }.auth-card, .account-card { padding: 28px 21px; }.auth-card h1, .account-card h1 { font-size: 26px; }.account-details div { align-items: start; flex-direction: column; gap: 4px; }.account-details strong { text-align: left; }
+}
