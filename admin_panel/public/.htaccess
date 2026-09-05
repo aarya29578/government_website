@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /
+
+# Let the Admin Panel SPA handle /admin, /login, /images, and /settings.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]

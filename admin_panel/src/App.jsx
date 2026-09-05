@@ -14,7 +14,9 @@ import './App.css'
 function getPage() {
   const route = window.location.pathname.replace(/^\//, '') || window.location.hash.replace(/^#\/?/, '')
   if (route === 'admin/login' || route === 'login') return 'login'
-  return window.location.hash === '#settings' ? 'settings' : window.location.hash === '#images' ? 'images' : 'dashboard'
+  if (route === 'images' || window.location.hash === '#images') return 'images'
+  if (route === 'settings' || window.location.hash === '#settings') return 'settings'
+  return 'dashboard'
 }
 
 function App() {
@@ -60,7 +62,7 @@ function App() {
 
   const navigate = (nextPage) => {
     setPage(nextPage)
-    window.history.pushState({}, '', nextPage === 'dashboard' ? '/admin' : `#${nextPage}`)
+    window.history.pushState({}, '', nextPage === 'dashboard' ? '/admin' : `/${nextPage}`)
   }
 
   const handleLogin = (nextUser) => { setUser(nextUser); setState({ loading: false, error: '' }); navigate('dashboard') }
