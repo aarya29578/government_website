@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ImagePlaceholder } from './components/ImagePlaceholder'
 import { SiteLogo } from './components/SiteLogo'
+import { CalendarIcon, UsersIcon, CheckCircleIcon } from './components/icons'
 import { ServicesSection } from './components/ServicesSection'
 import { ContactSection } from './components/ContactSection'
 import { LanguageSwitcher } from './components/LanguageSwitcher'
@@ -12,6 +13,8 @@ import {
 import { useSiteSettings } from './context/SiteSettingsContext'
 import { useAuth } from './context/AuthContext'
 import { useLanguage } from './i18n/LanguageContext'
+import { resolveSiteText } from './i18n/contentText'
+import { buildWhatsAppUrl } from './utils/whatsapp'
 import { Login } from './pages/Login'
 import { Signup } from './pages/Signup'
 import { Account } from './pages/Account'
@@ -66,16 +69,18 @@ function Hero({ images }) {
           <h1>{t('hero.welcomeTitle')}</h1>
           <p className="hero-download">{t('hero.downloadLine')}</p>
           <p className="hero-services">{t('hero.serviceLine')}</p>
+          <div className="hero-play-badge">
+            <ImagePlaceholder name="googlePlay" source={images.googlePlayUrl} alt={t('hero.googlePlayAlt')} className="play-placeholder">
+              <span className="play-icon">▶</span>
+              <span><small>GET IT ON</small><strong>Google Play</strong></span>
+            </ImagePlaceholder>
+          </div>
           <div className="hero-actions">
             <a className="button button-primary" href="#services">{t('hero.ourServices')}</a>
             <a className="button button-secondary" href="#contact">{t('hero.contactUs')}</a>
           </div>
         </div>
         <div className="hero-media" aria-label={t('hero.mediaAriaLabel')}>
-          <ImagePlaceholder name="googlePlay" source={images.googlePlayUrl} alt={t('hero.googlePlayAlt')} className="play-placeholder">
-            <span className="play-icon">▶</span>
-            <span><small>GET IT ON</small><strong>Google Play</strong></span>
-          </ImagePlaceholder>
           <ImagePlaceholder name="qrCode" source={images.qrCodeUrl} alt={t('hero.qrAlt')} className="qr-placeholder">
             <span className="qr-pattern" aria-hidden="true" />
             <span className="qr-label">SCAN ME</span>
@@ -87,23 +92,83 @@ function Hero({ images }) {
 }
 
 function About() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+  const remoteSettings = useSiteSettings()
+  const description = resolveSiteText(remoteSettings.aboutDescription, remoteSettings.aboutDescriptionMr, language, t('about.text'))
   return (
     <section className="about-section content-section" id="about">
       <div className="section-heading">
         <h2>{t('about.heading')}</h2>
         <span className="heading-rule" />
       </div>
-      <p>{t('about.text')}</p>
+      <p>{description}</p>
+    </section>
+  )
+}
+
+function AboutStats() {
+  const { t, language } = useLanguage()
+  const remoteSettings = useSiteSettings()
+  const stats = [
+    {
+      Icon: CalendarIcon,
+      value: remoteSettings.aboutStat1Value || t('aboutStats.stat1Value'),
+      label: resolveSiteText(remoteSettings.aboutStat1Label, remoteSettings.aboutStat1LabelMr, language, t('aboutStats.stat1Label')),
+    },
+    {
+      Icon: UsersIcon,
+      value: remoteSettings.aboutStat2Value || t('aboutStats.stat2Value'),
+      label: resolveSiteText(remoteSettings.aboutStat2Label, remoteSettings.aboutStat2LabelMr, language, t('aboutStats.stat2Label')),
+    },
+    {
+      Icon: CheckCircleIcon,
+      value: remoteSettings.aboutStat3Value || t('aboutStats.stat3Value'),
+      label: resolveSiteText(remoteSettings.aboutStat3Label, remoteSettings.aboutStat3LabelMr, language, t('aboutStats.stat3Label')),
+    },
+  ]
+  return (
+    <section className="about-stats-section">
+      <div className="about-stats-card">
+        {stats.map(({ Icon, value, label }, index) => (
+          <div className="about-stat" key={index}>
+            <span className="about-stat-icon"><Icon className="about-stat-icon-svg" /></span>
+            <strong className="about-stat-value">{value}</strong>
+            <span className="about-stat-label">{label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function ServicesWhatsAppCta() {
+  const { t } = useLanguage()
+  const remoteSettings = useSiteSettings()
+  const whatsappUrl = buildWhatsAppUrl(remoteSettings.whatsappNumber)
+
+  const handleClick = () => {
+    if (!whatsappUrl) return
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+  }
+
+  return (
+    <section className="whatsapp-cta-section">
+      <button
+        type="button"
+        className="whatsapp-cta-button"
+        onClick={handleClick}
+        disabled={!whatsappUrl}
+        title={whatsappUrl ? undefined : t('whatsappCta.unavailable')}
+      >
+        {t('whatsappCta.buttonText')}
+      </button>
     </section>
   )
 }
 
 function WhatsAppButton({ number }) {
   const { t } = useLanguage()
-  const href = number === 'REPLACE_WITH_NUMBER' || !number
-    ? '#contact'
-    : `https://wa.me/${number}`
+  const href = buildWhatsAppUrl(number) || '#contact'
 
   return (
     <a className="whatsapp-button" href={href} aria-label={t('whatsapp.ariaLabel')}>
@@ -149,7 +214,9 @@ function App() {
       <main>
         <Hero images={images} />
         <About />
+        <AboutStats />
         <ServicesSection />
+        <ServicesWhatsAppCta />
         <ContactSection />
       </main>
       <WhatsAppButton number={whatsappNumber} />

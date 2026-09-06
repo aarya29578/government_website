@@ -52,7 +52,7 @@ export function ServiceDetail({ slug }) {
     if (Object.keys(nextErrors).length > 0) return
     setSubmitState({ submitting: true, success: false, error: '' })
     try {
-      await submitServiceForm({ serviceId: service.id, serviceName: service.name, formData: values })
+      await submitServiceForm({ serviceId: service.id, serviceName: service.name, fields, formData: values })
       setValues({})
       setSubmitState({ submitting: false, success: true, error: '' })
     } catch (error) {

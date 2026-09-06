@@ -5,6 +5,17 @@ export const emptySettings = {
   qrCodeUrl: '',
   googlePlayUrl: '',
   whatsappNumber: '',
+  aboutDescription: '',
+  aboutDescriptionMr: '',
+  aboutStat1Value: '',
+  aboutStat1Label: '',
+  aboutStat1LabelMr: '',
+  aboutStat2Value: '',
+  aboutStat2Label: '',
+  aboutStat2LabelMr: '',
+  aboutStat3Value: '',
+  aboutStat3Label: '',
+  aboutStat3LabelMr: '',
 }
 
 export async function loadSettings() {

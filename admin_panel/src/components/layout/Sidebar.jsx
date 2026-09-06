@@ -26,6 +26,7 @@ const groups = [
   {
     labelKey: 'sidebar.administrationGroup',
     links: [
+      { id: 'whatsapp-number', labelKey: 'sidebar.whatsappNumber', icon: '💬' },
       { id: 'add-admin', labelKey: 'sidebar.addAdminUser', icon: '➕' },
     ],
   },

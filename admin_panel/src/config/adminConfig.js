@@ -23,6 +23,7 @@ export const fieldTypeOptions = [
   { value: 'date', labelKey: 'fieldType.date' },
   { value: 'checkbox', labelKey: 'fieldType.checkbox' },
   { value: 'radio', labelKey: 'fieldType.radio' },
+  { value: 'image', labelKey: 'fieldType.image' },
 ]
 
 export const serviceIconOptions = [

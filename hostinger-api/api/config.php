@@ -14,6 +14,7 @@ $apiConfig = [
         'https://jenishaonlineservice.com',
         'https://www.jenishaonlineservice.com',
         'https://admin.jenishaonlineservice.com',
+        'https://jenishaadminpanel.netlify.app',
         'https://jenishaonlineservice-com-452787.hostingersite.com',
     ],
 ];

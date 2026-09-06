@@ -176,3 +176,35 @@ export function EnvelopeIcon(props) {
     </svg>
   )
 }
+
+export function CalendarIcon(props) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="3" y="4.5" width="18" height="16" rx="2" />
+      <line x1="3" y1="9.5" x2="21" y2="9.5" />
+      <line x1="8" y1="2.5" x2="8" y2="6.5" />
+      <line x1="16" y1="2.5" x2="16" y2="6.5" />
+      <path d="M8.3 14.2l1.9 1.9 3.5-4" />
+    </svg>
+  )
+}
+
+export function UsersIcon(props) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="9" cy="8" r="3.3" />
+      <path d="M2.7 19.5c0-3.4 2.8-5.8 6.3-5.8s6.3 2.4 6.3 5.8" />
+      <circle cx="17.3" cy="9" r="2.5" />
+      <path d="M15.5 13.9c2.7.4 4.5 2.3 4.5 5" />
+    </svg>
+  )
+}
+
+export function CheckCircleIcon(props) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="12" cy="12" r="9.2" />
+      <path d="M8 12.3l2.6 2.6 5.4-5.6" />
+    </svg>
+  )
+}

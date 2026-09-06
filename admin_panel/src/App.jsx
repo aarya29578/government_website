@@ -13,6 +13,7 @@ import { LoadingScreen } from './pages/LoadingScreen'
 import { ManageServiceForm } from './pages/ManageServiceForm'
 import { Services } from './pages/Services'
 import { WebsiteSettings } from './pages/WebsiteSettings'
+import { WhatsAppNumber } from './pages/WhatsAppNumber'
 import { emptySettings, loadSettings } from './services/settingsService'
 import { useLanguage } from './i18n/LanguageContext'
 import './App.css'
@@ -27,6 +28,7 @@ function getPage() {
   if (route === 'forms-data') return 'forms-data'
   if (route === 'get-in-touch') return 'get-in-touch'
   if (route === 'add-admin') return 'add-admin'
+  if (route === 'whatsapp-number') return 'whatsapp-number'
   return 'dashboard'
 }
 
@@ -98,6 +100,7 @@ function App() {
   return <AdminLayout user={user} page={page} onNavigate={navigate} onLogout={handleLogout}>
     {state.error && <div className="page-alert error">{t(state.error)}</div>}
     {page === 'settings' && <WebsiteSettings settings={settings} onSettingsChange={handleSettingsChange} />}
+    {page === 'whatsapp-number' && <WhatsAppNumber settings={settings} onSettingsChange={handleSettingsChange} />}
     {page === 'images' && <ImageManagement settings={settings} onSettingsChange={handleSettingsChange} />}
     {page === 'services' && <Services onManageForm={(serviceId) => navigate('service-form', { serviceId })} />}
     {page === 'service-form' && <ManageServiceForm serviceId={serviceFormId} onBack={() => navigate('services')} />}

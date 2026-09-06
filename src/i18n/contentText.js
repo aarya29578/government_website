@@ -9,6 +9,11 @@ export function resolveServiceText(service, language) {
   return { title, description }
 }
 
+export function resolveSiteText(value, valueMr, language, fallback = '') {
+  if (language === 'mr') return valueMr || value || fallback
+  return value || fallback
+}
+
 export function resolveFieldText(field, language) {
   if (!field) return { label: '', placeholder: '' }
   const label = language === 'mr'

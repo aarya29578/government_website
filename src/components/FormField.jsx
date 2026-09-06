@@ -1,9 +1,56 @@
+import { useEffect, useMemo, useState } from 'react'
 import { resolveFieldText } from '../i18n/contentText'
 import { useLanguage } from '../i18n/LanguageContext'
+
+const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp']
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024
+
+function isValidImageFile(file) {
+  return Boolean(file) && ALLOWED_IMAGE_TYPES.includes(file.type) && file.size <= MAX_IMAGE_SIZE
+}
+
+function ImageFieldInput({ field, value, error, onChange }) {
+  const { t, language } = useLanguage()
+  const { label } = resolveFieldText(field, language)
+  const [localError, setLocalError] = useState('')
+  const previewUrl = useMemo(() => (value instanceof File ? URL.createObjectURL(value) : ''), [value])
+  useEffect(() => () => { if (previewUrl) URL.revokeObjectURL(previewUrl) }, [previewUrl])
+
+  const handleFile = (event) => {
+    const file = event.target.files?.[0]
+    event.target.value = ''
+    if (!file) return
+    if (!isValidImageFile(file)) { setLocalError(t('serviceDetail.errors.imageInvalid')); return }
+    setLocalError('')
+    onChange(field.key, file)
+  }
+
+  return (
+    <div className="form-field form-field-image">
+      <span>{label}{field.required && <em>*</em>}</span>
+      <small className="field-hint">{t('serviceDetail.imageHint')}</small>
+      {previewUrl && (
+        <span className="image-field-preview">
+          <img src={previewUrl} alt="" />
+        </span>
+      )}
+      <label className="image-field-choose">
+        <input type="file" accept="image/jpeg,image/png,image/webp" onChange={handleFile} hidden />
+        <span className="button button-secondary image-field-choose-button">{value instanceof File ? t('serviceDetail.changeImage') : t('serviceDetail.chooseImage')}</span>
+      </label>
+      {(localError || error) && <small className="field-error">{localError || error}</small>}
+    </div>
+  )
+}
 
 export function FormField({ field, value, error, onChange }) {
   const { t, language } = useLanguage()
   const { key, type, required, options = [] } = field
+
+  if (type === 'image') {
+    return <ImageFieldInput field={field} value={value} error={error} onChange={onChange} />
+  }
+
   const { label, placeholder } = resolveFieldText(field, language)
   const commonProps = {
     id: `field-${key}`,
@@ -76,6 +123,11 @@ export function validateFields(fields, values, t, language) {
   fields.forEach((field) => {
     const value = values[field.key]
     const { label } = resolveFieldText(field, language)
+    if (field.type === 'image') {
+      if (field.required && !(value instanceof File)) { errors[field.key] = t('serviceDetail.errors.required', { label }); return }
+      if (value instanceof File && !isValidImageFile(value)) { errors[field.key] = t('serviceDetail.errors.imageInvalid') }
+      return
+    }
     if (field.required) {
       const empty = field.type === 'checkbox' ? !value : !String(value ?? '').trim()
       if (empty) { errors[field.key] = t('serviceDetail.errors.required', { label }); return }
