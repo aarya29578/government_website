@@ -12,13 +12,13 @@
   --container-width: min(1180px, calc(100% - 80px));
 }
 
-.site-header { min-height: 100px; background: #fff; border-bottom: 1px solid #f0f1f2; position: relative; }
+.site-header { min-height: 130px; background: #fff; border-bottom: 1px solid #f0f1f2; position: relative; }
 .header-inner { width: calc(100% - 64px); max-width: 1440px; margin: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 40px; padding: 20px 0; }
 .brand { display: flex; align-items: center; gap: 18px; min-width: 0; }
-.logo-placeholder { width: 111px; height: 62px; position: relative; flex: 0 0 auto; color: #ec9720; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1; }
-.logo-mark { font-family: Outfit, sans-serif; font-size: 39px; font-weight: 700; line-height: .8; }
-.logo-word { font-family: Outfit, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 1px; }
-.logo-caption { color: #24446b; font-family: Outfit, sans-serif; font-size: 6px; letter-spacing: 1.8px; margin-top: 3px; }
+.logo-placeholder { width: 167px; height: 93px; position: relative; flex: 0 0 auto; color: #ec9720; display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1; object-fit: contain; }
+.logo-mark { font-family: Outfit, sans-serif; font-size: 59px; font-weight: 700; line-height: .8; }
+.logo-word { font-family: Outfit, sans-serif; font-size: 21px; font-weight: 700; letter-spacing: 1px; }
+.logo-caption { color: #24446b; font-family: Outfit, sans-serif; font-size: 9px; letter-spacing: 2.7px; margin-top: 5px; }
 .brand-tagline { display: block; color: #2e3a49; font-size: 18px; font-weight: 600; white-space: nowrap; }
 .main-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 32px; color: #202c3c; font-size: 16px; font-weight: 600; }
 .main-nav a { white-space: nowrap; transition: color .2s ease; }
@@ -35,28 +35,27 @@
 .nav-language-switcher { margin-left: 16px; }
 .auth-language-row { position: absolute; top: 34px; right: 42px; }
 
-.hero-section { min-height: 490px; background: var(--hero); color: #fff; display: flex; align-items: center; }
+.hero-section { min-height: 490px; background: #f3f8fc; color: var(--ink); display: flex; align-items: center; }
 .hero-inner { width: var(--container-width); margin: auto; display: grid; grid-template-columns: 1fr 340px; align-items: center; gap: 64px; padding: 72px 0 68px; }
 .hero-copy { text-align: center; }
-.hero-copy h1 { margin: 0 auto 28px; max-width: 760px; font-size: clamp(28px, 3vw, 42px); line-height: 1.45; font-weight: 700; }
-.hero-download { color: #ffd02d; font-size: clamp(17px, 1.65vw, 24px); font-weight: 600; margin: 0 0 16px; }
-.hero-services { color: #f6af23; font-size: clamp(15px, 1.35vw, 20px); margin: 0 0 40px; }
-.hero-play-badge { display: flex; justify-content: flex-start; margin: 0 0 var(--space-md); }
+.hero-copy h1 { margin: 0 auto 28px; max-width: 760px; font-size: clamp(28px, 3vw, 42px); line-height: 1.45; font-weight: 700; color: var(--navy); }
+.hero-download { color: var(--orange); font-size: clamp(17px, 1.65vw, 24px); font-weight: 600; margin: 0 0 16px; }
+.hero-services { color: var(--ink); font-size: clamp(15px, 1.35vw, 20px); margin: 0 0 40px; }
 .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 22px; }
 .button { min-width: 137px; padding: 11px 23px; border-radius: 4px; color: #fff; font-size: 16px; font-weight: 600; text-align: center; transition: transform .2s ease, filter .2s ease; }
 .button:hover { transform: translateY(-2px); filter: brightness(1.08); }
 .button-primary { background: #168bd2; }
 .button-secondary { background: #e8a12c; }
-.hero-media { display: flex; align-items: center; justify-content: center; gap: 23px; }
+.hero-media { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; }
 .image-placeholder { position: relative; overflow: hidden; }
 .play-placeholder { width: 165px; height: 52px; border-radius: 7px; background: #080808; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 3px 9px rgba(0,0,0,.22); }
 .play-placeholder small, .play-placeholder strong { display: block; text-align: left; font-family: Outfit, sans-serif; line-height: 1; }
 .play-placeholder small { font-size: 8px; letter-spacing: .6px; }
 .play-placeholder strong { font-size: 16px; font-weight: 500; margin-top: 3px; }
 .play-icon { color: #41a5f4; font-size: 22px; transform: scaleX(.8); }
-.qr-placeholder { width: 125px; height: 125px; border-radius: 8px; background: #050505; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
-.qr-pattern { width: 83px; height: 83px; position: relative; border: 5px solid white; background: repeating-conic-gradient(#fff 0 25%, #111 0 50%) 0 0 / 11px 11px; }
-.qr-pattern::before, .qr-pattern::after { content: ''; position: absolute; width: 21px; height: 21px; border: 5px solid #fff; background: #111; box-shadow: inset 0 0 0 4px #111, inset 0 0 0 7px #fff; }
+.qr-placeholder { width: 185px; height: 185px; border-radius: 10px; background: #050505; padding: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 6px 18px rgba(23, 45, 67, .14); }
+.qr-pattern { width: 123px; height: 123px; position: relative; border: 7px solid white; background: repeating-conic-gradient(#fff 0 25%, #111 0 50%) 0 0 / 16px 16px; }
+.qr-pattern::before, .qr-pattern::after { content: ''; position: absolute; width: 31px; height: 31px; border: 7px solid #fff; background: #111; box-shadow: inset 0 0 0 6px #111, inset 0 0 0 10px #fff; }
 .qr-pattern::before { top: 0; left: 0; }
 .qr-pattern::after { right: 0; bottom: 0; }
 .qr-label { font-family: Outfit, sans-serif; color: #fff; font-size: 8px; letter-spacing: 1.3px; }
@@ -193,18 +192,20 @@
   .hero-inner { grid-template-columns: 1fr; gap: 35px; }
   .hero-copy { padding-left: 0; }
   .hero-media { padding-bottom: 4px; }
+  .qr-placeholder { width: 150px; height: 150px; padding: 16px; }
+  .qr-pattern { width: 92px; height: 92px; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-layout { grid-template-columns: 1fr; gap: 28px; }
 }
 
 @media (max-width: 640px) {
-  .site-header { min-height: 78px; }
+  .site-header { min-height: 96px; }
   .header-inner { width: calc(100% - 32px); gap: 12px; padding: 10px 0; }
   .brand { gap: 12px; }
-  .logo-placeholder { width: 77px; height: 49px; }
-  .logo-mark { font-size: 29px; }
-  .logo-word { font-size: 10px; }
-  .logo-caption { font-size: 4px; letter-spacing: 1px; }
+  .logo-placeholder { width: 116px; height: 74px; }
+  .logo-mark { font-size: 44px; }
+  .logo-word { font-size: 15px; }
+  .logo-caption { font-size: 6px; letter-spacing: 1.5px; }
   .brand-tagline { font-size: 13px; max-width: 150px; line-height: 1.45; white-space: normal; }
   .hero-section { min-height: 0; }
   .hero-inner { width: calc(100% - 32px); padding: 48px 0 43px; gap: 38px; }
@@ -215,7 +216,8 @@
   .button { min-width: 125px; padding: 10px 15px; font-size: 14px; }
   .hero-media { gap: 15px; }
   .play-placeholder { width: 150px; }
-  .qr-placeholder { width: 110px; height: 110px; }
+  .qr-placeholder { width: 130px; height: 130px; padding: 14px; }
+  .qr-pattern { width: 80px; height: 80px; }
   .qr-pattern { width: 72px; height: 72px; }
   .content-section { padding: 58px 20px 65px; }
   .section-heading h2 { font-size: 25px; }

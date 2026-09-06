@@ -69,12 +69,6 @@ function Hero({ images }) {
           <h1>{t('hero.welcomeTitle')}</h1>
           <p className="hero-download">{t('hero.downloadLine')}</p>
           <p className="hero-services">{t('hero.serviceLine')}</p>
-          <div className="hero-play-badge">
-            <ImagePlaceholder name="googlePlay" source={images.googlePlayUrl} alt={t('hero.googlePlayAlt')} className="play-placeholder">
-              <span className="play-icon">▶</span>
-              <span><small>GET IT ON</small><strong>Google Play</strong></span>
-            </ImagePlaceholder>
-          </div>
           <div className="hero-actions">
             <a className="button button-primary" href="#services">{t('hero.ourServices')}</a>
             <a className="button button-secondary" href="#contact">{t('hero.contactUs')}</a>
@@ -84,6 +78,10 @@ function Hero({ images }) {
           <ImagePlaceholder name="qrCode" source={images.qrCodeUrl} alt={t('hero.qrAlt')} className="qr-placeholder">
             <span className="qr-pattern" aria-hidden="true" />
             <span className="qr-label">SCAN ME</span>
+          </ImagePlaceholder>
+          <ImagePlaceholder name="googlePlay" source={images.googlePlayUrl} alt={t('hero.googlePlayAlt')} className="play-placeholder">
+            <span className="play-icon">▶</span>
+            <span><small>GET IT ON</small><strong>Google Play</strong></span>
           </ImagePlaceholder>
         </div>
       </div>
