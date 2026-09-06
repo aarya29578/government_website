@@ -1,6 +1,8 @@
 import {
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  setPersistence,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -15,12 +17,14 @@ export function subscribeToAuth(callback) {
 
 export async function loginUser(email, password) {
   if (!auth) throw new Error('Firebase is not configured.')
+  await setPersistence(auth, browserLocalPersistence)
   const credential = await signInWithEmailAndPassword(auth, email, password)
   return credential.user
 }
 
 export async function registerUser({ fullName, email, mobileNumber, password }) {
   if (!auth || !publicDb) throw new Error('Firebase is not configured.')
+  await setPersistence(auth, browserLocalPersistence)
   const credential = await createUserWithEmailAndPassword(auth, email, password)
   await updateProfile(credential.user, { displayName: fullName })
   await setDoc(doc(publicDb, 'users', credential.user.uid), {

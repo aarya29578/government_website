@@ -1,5 +1,7 @@
 import {
+  browserLocalPersistence,
   onAuthStateChanged,
+  setPersistence,
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
@@ -8,6 +10,7 @@ import { getUserProfile } from './firestore'
 
 export async function loginAdmin(email, password) {
   if (!auth) throw new Error('Firebase is not configured. Add the VITE_FIREBASE_* values first.')
+  await setPersistence(auth, browserLocalPersistence)
   const credential = await signInWithEmailAndPassword(auth, email, password)
   const profile = await getUserProfile(credential.user.uid)
   const role = profile?.role
@@ -22,7 +25,7 @@ export async function loginAdmin(email, password) {
   })
   if (role !== 'admin') {
     await signOut(auth)
-    throw new Error('This account is not authorized to access the Admin Panel.')
+    throw new Error('login.notAuthorized')
   }
   return credential.user
 }
@@ -39,7 +42,7 @@ export function getAuthenticatedUser() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       unsubscribe()
       if (user) resolve(user)
-      else reject(new Error('You must be signed in as an administrator before uploading images.'))
+      else reject(new Error('images.errors.notSignedIn'))
     })
   })
 }

@@ -15,8 +15,43 @@ service cloud.firestore {
       allow get: if signedIn() && request.auth.uid == userId;
       allow list: if false;
       allow create: if signedIn() && request.auth.uid == userId && request.resource.data.role == 'user';
+      allow create: if isAdmin() && request.resource.data.role == 'admin';
       allow update: if isAdmin() || (signedIn() && request.auth.uid == userId && request.resource.data.role == resource.data.role);
       allow delete: if isAdmin();
+    }
+
+    match /services/{serviceId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /serviceForms/{serviceId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /siteSettings/contact {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /serviceSubmissions/{submissionId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if request.resource.data.serviceId is string
+        && request.resource.data.serviceId.size() > 0
+        && request.resource.data.serviceName is string
+        && request.resource.data.formData is map
+        && request.resource.data.status == 'new'
+        && request.resource.data.submittedAt == request.time;
+    }
+
+    match /contactSubmissions/{submissionId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if request.resource.data.fullName is string
+        && request.resource.data.fullName.size() > 0
+        && request.resource.data.mobileNumber is string
+        && request.resource.data.status == 'new'
+        && request.resource.data.submittedAt == request.time;
     }
   }
 }

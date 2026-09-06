@@ -2,16 +2,16 @@ import { adminConfig } from '../config/adminConfig'
 import { getAuthenticatedUser } from '../firebase/auth'
 
 export function validateImage(file) {
-  if (!file) return 'Choose an image before uploading.'
-  if (!adminConfig.allowedImageTypes.includes(file.type)) return 'Use a JPG, JPEG, PNG, or WEBP image.'
-  if (file.size > adminConfig.maxImageSize) return 'Images must be 5 MB or smaller.'
+  if (!file) return 'images.errors.chooseFile'
+  if (!adminConfig.allowedImageTypes.includes(file.type)) return 'images.errors.fileType'
+  if (file.size > adminConfig.maxImageSize) return 'images.errors.fileSize'
   return ''
 }
 
 export async function uploadImage(file, type, onProgress) {
   const validationError = validateImage(file)
   if (validationError) throw new Error(validationError)
-  if (!adminConfig.apiBaseUrl) throw new Error('Hostinger upload API is not configured yet.')
+  if (!adminConfig.apiBaseUrl) throw new Error('images.errors.apiNotConfigured')
   const user = await getAuthenticatedUser()
   const idToken = await user.getIdToken()
 
@@ -37,12 +37,12 @@ export async function uploadImage(file, type, onProgress) {
     }
     request.onload = () => {
       let response
-      try { response = JSON.parse(request.responseText) } catch { reject(new Error('The upload server returned an invalid response.')); return }
+      try { response = JSON.parse(request.responseText) } catch { reject(new Error('images.errors.invalidResponse')); return }
       console.info('[Image upload API response]', { success: response.success, message: response.message, filename: response.filename, publicUrl: response.publicUrl })
       if (request.status >= 200 && request.status < 300 && response.success && response.publicUrl) resolve(response)
-      else reject(new Error(response.message || 'The image upload failed.'))
+      else reject(new Error(response.message || 'images.errors.uploadFailed'))
     }
-    request.onerror = () => reject(new Error('Could not connect to the Hostinger upload API.'))
+    request.onerror = () => reject(new Error('images.errors.networkError'))
     request.send(formData)
   })
 }

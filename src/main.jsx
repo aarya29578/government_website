@@ -4,9 +4,10 @@ import './index.css'
 import App from './App.jsx'
 import { AuthProvider } from './context/AuthContext'
 import { SiteSettingsProvider } from './context/SiteSettingsContext'
+import { LanguageProvider } from './i18n/LanguageContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider><SiteSettingsProvider><App /></SiteSettingsProvider></AuthProvider>
+    <LanguageProvider><AuthProvider><SiteSettingsProvider><App /></SiteSettingsProvider></AuthProvider></LanguageProvider>
   </StrictMode>,
 )
